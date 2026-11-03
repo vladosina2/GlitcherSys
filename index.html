@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlitcherSys — Стримы и клипы</title>
+  <style>
+    :root {
+      --bg: #0f0f17;
+      --panel: #1a1a2e;
+      --accent: #9147ff;
+      --accent-2: #00e0c6;
+      --text: #f1f1f5;
+      --muted: #9a9ab0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+
+    header { text-align: center; padding: 60px 0 40px; }
+    .badge {
+      display: inline-block;
+      background: rgba(145, 71, 255, .15);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 { font-size: 2.6rem; margin-bottom: 10px; }
+    h1 span { color: var(--accent); }
+    .subtitle { color: var(--muted); font-size: 1.15rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .15s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #7a32e6; }
+    .btn-ghost {
+      border: 1px solid #3a3a55;
+      color: var(--text);
+      margin-left: 10px;
+    }
+    .btn-ghost:hover { background: #232338; }
+
+    section {
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
+    }
+    section h2 { font-size: 1.4rem; margin-bottom: 18px; }
+    section h2::before {
+      content: "\25CD";
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .event {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 4px;
+      border-bottom: 1px solid #2c2c45;
+    }
+    .event:last-child { border-bottom: none; }
+    .event .day { font-weight: 600; }
+    .event .tag {
+      background: rgba(0, 224, 198, .12);
+      color: var(--accent-2);
+      font-size: .8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .donate { text-align: center; }
+    .donate p { color: var(--muted); margin-bottom: 20px; }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 22px;
+      border: 1px solid #3a3a55;
+      border-radius: 10px;
+      transition: all .2s;
+    }
+    .socials a:hover { color: #fff; border-color: var(--accent); }
+
+    footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 40px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.9rem; }
+      .btn { display: block; width: 100%; margin: 8px 0; }
+      .btn-ghost { margin-left: 0; }
+      section { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="container">
+    <header>
+      <span class="badge">Live-канал</span>
+      <h1>Glitcher<span>Sys</span></h1>
+      <p class="subtitle">Стримы, клипы и технические разборы — по расписанию и с душой</p>
+      <br>
+      <a href="https://twitch.tv/glitchersys" class="btn btn-primary">Смотреть на Twitch</a>
+      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-ghost">Поддержать донатом</a>
+    </header>
+
+    <section>
+      <h2>Расписание стримов</h2>
+      <div class="event">
+        <span class="day">Среда, 20:00</span>
+        <span>Разбор сборки ПК</span>
+        <span class="tag">Техника</span>
+      </div>
+      <div class="event">
+        <span class="day">Суббота, 18:00</span>
+        <span>Прохождение Jedi: Survivor</span>
+        <span class="tag">Игры</span>
+      </div>
+      <div class="event">
+        <span class="day">Воскресенье, 21:00</span>
+        <span>Нарезка и монтаж клипов</span>
+        <span class="tag">Монтаж</span>
+      </div>
+    </section>
+
+    <section class="donate">
+      <h2>Поддержать канал</h2>
+      <p>Донаты идут на улучшение стримов: новый софт, геймплей и больше крутых клипов для вас.</p>
+      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-primary">Задонатить 💜</a>
+    </section>
+
+    <section>
+      <h2>Где меня найти</h2>
+      <div class="socials">
+        <a href="https://twitch.tv/glitchersys">Twitch</a>
+        <a href="https://youtube.com/@glitchersys">YouTube</a>
+      </div>
+    </section>
+
+    <footer>© 2026 GlitcherSys — сделано с любовью к стримам 💜</footer>
+  </div>
+
+  <script>
+    var canvas = document.getElementById('bg-canvas');
+    var ctx = canvas.getContext('2d');
+
+    var particles = [];
+    var particleCount = 55;
+    var mouse = { x: -9999, y: -9999 };
+    var width = 0, height = 0;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function makeParticles() {
+      particles = [];
+      for (var i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          size: Math.random() * 2 + 1,
+          color: Math.random() > 0.5 ? '145,71,255' : '0,224,198',
+          alpha: 0.5 + Math.random() * 0.5
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      var i, j, p1, p2, dx, dy, dist;
+      for (i = 0; i < particles.length; i++) {
+        for (j = i + 1; j < particles.length; j++) {
+          p1 = particles[i];
+          p2 = particles[j];
+          dx = p1.x - p2.x;
+          dy = p1.y - p2.y;
+          dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            ctx.strokeStyle = 'rgba(145,71,255,' + (0.18 * (1 - dist / 130)) + ')';
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (i = 0; i < particles.length; i++) {
+        p1 = particles[i];
+        p1.x += p1.vx;
+        p1.y += p1.vy;
+        if (p1.x < 0 || p1.x > width) p1.vx = -p1.vx;
+        if (p1.y < 0 || p1.y > height) p1.vy = -p1.vy;
+
+        dx = mouse.x - p1.x;
+        dy = mouse.y - p1.y;
+        dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180 && dist > 0.001) {
+          p1.vx += (dx / dist) * 0.05;
+          p1.vy += (dy / dist) * 0.05;
+        }
+        p1.vx *= 0.99;
+        p1.vy *= 0.99;
+
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + p1.color + ',' + p1.alpha + ')';
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', function () {
+      resize();
+      makeParticles();
+    });
+    window.addEventListener('mousemove', function (e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    resize();
+    makeParticles();
+    animate();
+  </script>
+</body>
+</html>
