@@ -77,6 +77,290 @@
       border-radius: 8px;
       font-weight: 600;
       transition: all 0.3s ease;
-      cursor:
+      cursor: pointer;
+      text-align: center;
+      margin: 8px;
+      box-sizing: border-box;
+    }
+
+    .btn-primary {
+      background-color: #bb86fc;
+      color: #0f0f0f;
+    }
+
+    .btn-primary:hover {
+      background-color: #a06ef0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(187, 134, 252, 0.35);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      border: 1px solid #444;
+      color: #e0e0e0;
+    }
+
+    .btn-ghost:hover {
+      border-color: #bb86fc;
+      color: #bb86fc;
+      transform: translateY(-2px);
+    }
+
+    /* Секции-карточки */
+    section {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    section p {
+      color: #b8b8b8;
+      line-height: 1.6;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    /* Блок расписания */
+    .alert-badge {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: rgba(187, 134, 252, 0.1);
+      border: 1px solid rgba(187, 134, 252, 0.4);
+      border-radius: 8px;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    /* Соцсети */
+    .socials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      padding: 12px 22px;
+      background-color: rgba(255, 255, 255, 0.07);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-btn:hover {
+      background-color: rgba(187, 134, 252, 0.2);
+      border-color: #bb86fc;
+      color: #bb86fc;
+      transform: translateY(-2px);
+    }
+
+    /* Футер */
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* Адаптив */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .btn { display: block; width: 100%; margin: 8px 0; }
+      section { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="container">
+    <header>
+      <span class="badge">Live-канал</span>
+      <h1>Glitcher<span>Sys</span></h1>
+      <p class="subtitle">Стримы и клипы — с душой</p>
+      <a href="https://twitch.tv/glitchersys" class="btn btn-primary">Смотреть на Twitch</a>
+      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-ghost">Поддержать донатом</a>
+    </header>
+
+    <!-- Блок «когда стрим» -->
+    <section>
+      <h2>📡 Когда стрим?</h2>
+      <p>Точного расписания нет — стримлю, когда есть крутой контент и настроение.</p>
+      <p>Чтобы не пропустить — следи за анонсами в соцсетях (кнопки ниже).</p>
+      <div class="alert-badge">
+        ⚡ Следующий стрим уже скоро!
+      </div>
+    </section>
+
+    <!-- Блок донатов -->
+    <section class="center">
+      <h2>💜 Поддержать канал</h2>
+      <p>Твоя поддержка — это топливо для новых стримов. Это знак, что тебе нравится то, что я делаю. Спасибо, что помогаешь каналу расти!</p>
+      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-primary">Задонатить 💜</a>
+    </section>
+
+    <!-- Блок соцсетей -->
+    <section>
+      <h2 class="center">🌐 Где меня найти</h2>
+      <div class="socials-grid">
+        <a href="https://twitch.tv/glitchersys" class="btn social-btn">Twitch</a>
+        <a href="https://youtube.com/@glitchersys" class="btn social-btn">YouTube</a>
+        <a href="https://vkvideo.ru/@glitchersys" class="btn social-btn">VK Видео</a>
+        <a href="https://vk.ru/glitchersys" class="btn social-btn">VK Сообщество</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2026 GlitcherSys — сделано с любовью к стримам 💜
+  </footer>
+
+  <script>
+    // Интерактивный фон: частицы летают и тянутся за курсором
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    let mouse = { x: null, y: null };
+    const connectDistance = 120;
+    const mouseDistance = 150;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      const count = Math.min(Math.floor((canvas.width * canvas.height) / 16000), 120);
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Притяжение к курсору
+        if (mouse.x !== null) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouseDistance && dist > 0.1) {
+            p.x += (dx / dist) * 0.6;
+            p.y += (dy / dist) * 0.6;
+          }
+        }
+
+        // Заворачиваем частицы на противоположную сторону
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        // Рисуем частицу
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#bb86fc';
+        ctx.globalAlpha = 0.7;
+        ctx.fill();
+      }
+
+      // Линии между близкими частицами
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < connectDistance) {
+            ctx.globalAlpha = 0.15 * (1 - distance / connectDistance);
+            ctx.strokeStyle = '#bb86fc';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Линии от частиц к курсору
+      if (mouse.x !== null) {
+        for (const p of particles) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouseDistance) {
+            ctx.globalAlpha = 0.35 * (1 - distance / mouseDistance);
+            ctx.strokeStyle = '#03dac6';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    // Поддержка тачскрина: палец тоже притягивает частицы
+    window.addEventListener('touchmove', (e) => {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    });
+
+    window.addEventListener('touchend', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    resizeCanvas();
+    createParticles();
+    animate();
+  </script>
+
+</body>
+</html>
 
 
