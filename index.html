@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlitcherSys | Стримы и разборы</title>
+  <title>GlitcherSys — Стримы и клипы</title>
   <style>
     /* Базовые стили */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
+      background-color: #0f0f0f;
       color: #e0e0e0;
       overflow-x: hidden;
     }
 
-    /* Холст для фона (оставляем как у тебя) */
+    /* Холст для анимированного фона */
     canvas#bg-canvas {
       position: fixed;
       top: 0;
@@ -35,209 +35,48 @@
     /* Шапка */
     header {
       text-align: center;
-      padding: 40px 0;
-      border-bottom: 1px solid #333;
-      margin-bottom: 40px;
+      padding: 60px 0 40px;
     }
 
     .badge {
       display: inline-block;
-      background-color: #bb86fc;
-      color: #000;
-      padding: 5px 12px;
+      background: rgba(187, 134, 252, 0.15);
+      border: 1px solid #bb86fc;
+      color: #bb86fc;
+      padding: 5px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: bold;
       margin-bottom: 15px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
     h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 3rem;
       line-height: 1.1;
       color: #ffffff;
     }
 
     h1 span {
-      color: #bb86fc; /* Акцентный цвет */
+      color: #bb86fc;
     }
 
     .subtitle {
       color: #aaaaaa;
-      margin: 15px 0 25px;
-      font-size: 1.1rem;
+      margin: 15px 0 30px;
+      font-size: 1.15rem;
     }
 
     /* Кнопки */
     .btn {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 14px 28px;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
       transition: all 0.3s ease;
-      cursor: pointer;
-      text-align: center;
-      width: 100%; /* Адаптивность для мобильных */
-      max-width: 300px;
-      box-sizing: border-box;
-    }
+      cursor:
 
-    .btn-primary {
-      background-color: #bb86fc;
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      background-color: #9964cc;
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost {
-      background-color: transparent;
-      border: 1px solid #bb86fc;
-      color: #bb86fc;
-    }
-
-    .btn-ghost:hover {
-      background-color: #bb86fc;
-      color: #000;
-    }
-
-    /* Секции */
-    section {
-      margin-bottom: 50px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 25px;
-      font-size: 1.8rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 10px;
-      display: inline-block;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Блок расписания */
-    .schedule-block {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 25px;
-      border-radius: 10px;
-      text-align: center;
-      border: 1px solid #333;
-    }
-
-    .schedule-block h3 {
-      color: #bb86fc;
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-
-    .alert-badge {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #1e1e1e;
-      border: 1px solid #333;
-      border-left: 4px solid #bb86fc;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    /* Соцсети */
-    .socials-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-btn {
-      padding: 12px 20px;
-      width: auto; /* Кнопки не на всю ширину, а по контенту */
-      background-color: #2b2b2b;
-      color: #fff;
-      border: none;
-    }
-
-    .social-btn:hover {
-      background-color: #4a4a4a;
-      transform: translateY(-2px);
-    }
-
-    /* Адаптив */
-    @media (max-width: 600px) {
-      .socials-grid {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .social-btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <canvas id="bg-canvas"></canvas>
-
-  <div class="container">
-    <header>
-      <span class="badge">Live-канал</span>
-      <h1>Glitcher<span>Sys</span></h1>
-      <p class="subtitle">Стримы, клипы и технические разборы — по расписанию и с душой</p>
-      <br>
-      <a href="https://twitch.tv/glitchersys" class="btn btn-primary">Смотреть на Twitch</a>
-      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-ghost">Поддержать донатом</a>
-    </header>
-
-    <!-- Блок расписания (без жёсткого графика) -->
-    <section>
-      <h2>Расписание стримов</h2>
-      <div class="schedule-block">
-        <h3>📡 Когда стрим?</h3>
-        <p>Точного расписания нет — стримлю, когда есть крутой контент и настроение.</p>
-        <p>Чтобы не пропустить — следи за анонсами в соцсетях (кнопки ниже).</p>
-        <div class="alert-badge">
-          ⚡ <b>Следующий стрим уже скоро!</b>
-        </div>
-      </div>
-    </section>
-
-    <!-- Блок донатов (обновлённый текст) -->
-    <section class="donate">
-      <h2>Поддержать канал</h2>
-      <p>Твоя поддержка — это топливо для новых стримов. Это знак, что тебе нравится то, что я делаю. Спасибо, что помогаешь каналу расти!</p>
-      <a href="https://donationalerts.com/r/glitchersys" class="btn btn-primary">Задонатить 💜</a>
-    </section>
-
-    <!-- Блок соцсетей (полный набор) -->
-    <section>
-      <h2>Где меня найти</h2>
-      <div class="socials-grid">
-        <a href="https://twitch.tv/glitchersys" class="btn social-btn">Twitch</a>
-        <a href="https://youtube.com/@glitchersys" class="btn social-btn">YouTube</a>
-        <a href="https://vkvideo.ru/@glitchersys" class="btn social-btn">VK Видео</a>
-        <a href="https://vk.ru/glitchersys" class="btn social-btn">VK Сообщество</a>
-      </div>
-    </section>
-  </div>
-
-  <footer style="text-align: center; padding: 20px; color: #555; font-size: 0.9rem; margin-top: 50px;">
-    &copy; 2024 GlitcherSys. Все права защищены.
-  </footer>
-
-</body>
-</html>
 
